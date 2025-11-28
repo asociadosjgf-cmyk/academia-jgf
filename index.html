@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academia JGF | Fórmate como Contador Independiente</title>
+    
+    <!-- Incluimos la fuente Inter de Google Fonts para un estilo más elegante y moderno -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    
+    <!-- ESTILOS CSS INCLUIDOS DIRECTAMENTE --><style>
+        /* --- 1. PALETA DE COLORES Y CONFIGURACIÓN --- */
+        :root {
+            /* Colores de JGF ASOCIADOS */
+            --primary: #1F2D64;       /* Azul Oscuro (Títulos/Texto/Fondo) */
+            --accent: #80062D;        /* Vinotinto (Énfasis/Botón CTA) */
+            --complementary: #EDD7C7; /* Beige (Fondos suaves/Acentos) */
+            --secondary-text: #64748b;/* Gris para párrafos */
+            --white: #ffffff;
+            --success: #10b981;       /* Verde para checkmarks */
+            --bg-light: #f8fafc;      /* Fondo Claro para secciones */
+            --module-bg: #EAEFFC;     /* Azul muy claro */
+        }
+
+        /* Cambiamos la fuente general a Inter */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', system-ui, sans-serif; }
+
+        body { line-height: 1.6; color: var(--primary); background-color: var(--white); }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        a:hover { color: var(--accent); }
+        ul { list-style: none; }
+        /* Imagenes en general, sin bordes a menos que se especifique */
+        img { max-width: 100%; display: block; border-radius: 8px; } 
+
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+        .section-padding { padding: 80px 0; }
+        .section-title { text-align: center; margin-bottom: 50px; }
+        .section-title h2 { font-size: 2.5rem; margin-bottom: 10px; }
+        
+        /* Layout de Contenido */
+        .content-grid {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+        .text-content { flex: 1; min-width: 300px; }
+        .image-content { flex: 1; min-width: 300px; }
+
+
+        /* Botones */
+        .btn {
+            display: inline-block;
+            padding: 15px 40px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-radius: 10px; 
+            transition: 0.3s;
+            border: none;
+        }
+        
+        /* Botón CTA Principal (AZUL OSCURO) */
+        .btn-cta-main {
+            background-color: var(--primary); 
+            color: var(--white); 
+            box-shadow: 0 5px 20px rgba(128, 6, 45, 0.5); 
+        }
+        .btn-cta-main:hover { 
+            background-color: #1a2550; 
+            transform: translateY(-4px) scale(1.02); 
+            box-shadow: 0 10px 30px rgba(128, 6, 45, 0.7); 
+        }
+        
+        /* Botón CTA Vinotinto (Para la caja de precio y CTA final) */
+        .btn-cta-accent {
+            background-color: var(--accent); 
+            color: var(--white); 
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3); 
+        }
+        .btn-cta-accent:hover { 
+            background-color: #5c0521; 
+            transform: translateY(-4px) scale(1.02); 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
+        }
+
+
+        /* Botón Secundario (Vinotinto - Usado en el navbar) */
+        .btn-secondary { 
+            background-color: var(--accent); 
+            color: var(--white);
+            box-shadow: 0 4px 15px rgba(128, 6, 45, 0.4);
+        }
+        .btn-secondary:hover { 
+            background-color: #5c0521; 
+            transform: translateY(-3px); 
+            box-shadow: 0 8px 20px rgba(128, 6, 45, 0.5); 
+        }
+
+        /* --- BARRA DE NAVEGACIÓN --- */
+        .header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+        .logo-group {
+            display: flex;
+            align-items: center;
+            gap: 15px; 
+        }
+        .logo-group .academy-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 2px solid var(--accent); 
+        }
+        .logo img { height: 45px; width: auto; border-radius: 0; }
+
+        /* --- SECCIÓN HERO (FONDO IMAGEN) --- */
+        #hero-section {
+            padding: 120px 0; 
+            background-color: var(--complementary); 
+            background-image: url('my_image.jpg'); 
+            background-size: cover; 
+            background-position: center center; 
+            background-repeat: no-repeat;
+            min-height: 90vh; 
+            display: flex;
+            align-items: center; 
+            justify-content: center; 
+            position: relative;
+        }
+
+        .hero-content-box {
+            max-width: 700px; 
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            background: rgba(128, 6, 45, 0.85); /* Vinotinto 85% opaco */
+            color: var(--white); 
+            box-shadow: 0 15px 40px rgba(0,0,0,0.5); 
+        }
+        
+        .hero-content-box h1 { 
+            font-size: 3rem; 
+            margin-bottom: 25px; 
+            line-height: 1.2; 
+            color: var(--white); 
+        }
+        .hero-content-box p { 
+            font-size: 1.3rem; 
+            color: var(--complementary); 
+            margin-bottom: 40px; 
+            font-weight: 300;
+        }
+
+        .hero-content-box .btn-cta-main {
+            background-color: var(--primary); 
+            box-shadow: 0 5px 20px rgba(0,0,0,0.5); 
+            border: 2px solid var(--white); 
+        }
+        .hero-content-box .btn-cta-main:hover {
+            background-color: #1a2550;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+        }
+        
+        /* ========================================
+        --- SECCIÓN QUIÉNES SOMOS (FONDO VINOTINTO) ---
+        ======================================== */
+        #about-us {
+            background: var(--accent); /* Fondo VINOTINTO */
+            border-bottom: 1px solid var(--primary); 
+        }
+        #about-us h2 {
+            color: var(--white); /* Título en Blanco */
+        }
+        /* Subtítulo "Conoce a Nuestro Equipo" a BLANCO (Contraste alto) */
+        #about-us h3 {
+            color: var(--white); 
+        }
+        /* Párrafos a BLANCO (Contraste alto) */
+        #about-us p {
+            color: var(--white); 
+        }
+
+        /* Estilos para el equipo */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 20px;
+            margin-top: 30px;
+            text-align: center;
+        }
+        /* CUADROS DE EQUIPO BLANCOS */
+        .team-member {
+            padding: 15px;
+            background: var(--white); /* Fondo BLANCO */
+            color: var(--primary); /* Texto dentro del cuadro AZUL OSCURO (Color general del texto en la tarjeta) */
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            transition: transform 0.3s;
+        }
+        .team-member:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+        }
+
+        .team-member img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 50%; 
+            border: 3px solid var(--accent); /* Borde VINOTINTO */
+            margin: 0 auto 10px auto;
+        }
+        
+        /* Nombre en AZUL OSCURO (Corregido: Forzamos el color para que gane la especificidad de #about-us p) */
+        .team-member .name {
+            font-weight: bold;
+            color: var(--primary) !important; 
+            padding: 2px 5px;
+            border-radius: 5px;
+            margin: 0 auto 5px auto;
+            display: block; 
+            font-size: 1.1rem;
+        }
+        /* Título/Puesto a color AZUL OSCURO (Corregido: Forzamos el color para que gane la especificidad de #about-us p) */
+        .team-member .title {
+            font-size: 0.95rem; 
+            font-weight: 600; /* Incrementado el peso para mayor visibilidad */
+            color: #1F2D64 !important; /* Usando HEX directo y !important para forzar el Azul Oscuro */
+            display: block;
+            line-height: 1.3; 
+        }
+
+
+        /* ========================================
+        --- ⭐ SECCIÓN INCLUYE (FONDO BLANCO) ⭐ ---
+        ======================================== */
+        #includes-section {
+            background: var(--white); 
+            border-bottom: 1px solid var(--complementary);
+        }
+        .includes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        /* Estilo para los ítems de Inclusión */
+        .include-item {
+            background: var(--module-bg); 
+            color: var(--primary); 
+            padding: 20px;
+            border-radius: 12px; 
+            font-size: 1.1rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            border: 1px solid var(--primary); 
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1); 
+            transition: all 0.3s ease;
+        }
+        .include-item:hover {
+            transform: translateY(-5px); 
+            background: var(--complementary); 
+            box-shadow: 0 15px 25px rgba(0,0,0,0.2);
+        }
+        .include-item span {
+            font-size: 1.8rem;
+            margin-right: 15px;
+            color: var(--accent); 
+            text-shadow: 1px 1px 2px rgba(128, 6, 45, 0.3); 
+        }
+        
+        /* --- ⭐ SECCIÓN CURSO / MÓDULOS (FONDO BEIGE) ⭐ --- */
+        #course-section {
+            background-color: var(--complementary); 
+        }
+
+        #course-details {
+            display: flex;
+            gap: 50px;
+            align-items: flex-start;
+        }
+        .course-info {
+            flex: 2;
+            min-width: 50%;
+        }
+        .module-list {
+            list-style: none;
+            counter-reset: module-counter;
+            padding-left: 0;
+            margin-top: 20px;
+        }
+        .module-list li {
+            counter-increment: module-counter;
+            background: var(--module-bg); 
+            border-radius: 5px;
+            padding: 15px 20px;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            border-left: 6px solid var(--accent);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .module-list li::before {
+            content: "Módulo " counter(module-counter) ": ";
+            font-weight: 900; 
+            color: var(--primary); 
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+
+        /* --- SECCIÓN PRECIO (CTA y BOX) --- */
+        .price-box {
+            flex: 1;
+            min-width: 300px;
+            background: var(--primary); 
+            color: var(--white);
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            position: sticky; 
+            top: 100px; 
+        }
+        .price-box h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--complementary);
+        }
+        .price-box .price-tag {
+            font-size: 4rem;
+            font-weight: 900;
+            color: var(--success); 
+            margin-bottom: 10px; 
+            display: block;
+        }
+        .payment-info {
+            font-size: 0.95rem;
+            line-height: 1.4;
+            margin-bottom: 25px;
+            color: var(--complementary);
+        }
+        .payment-info strong {
+            color: var(--white);
+        }
+        .price-note {
+            font-size: 0.9rem;
+            margin-top: 20px;
+            color: #ddd;
+        }
+        
+        /* Botón dentro de la caja de precio, en Vinotinto */
+        .price-box .btn-cta-accent {
+            background-color: var(--accent); 
+            color: var(--white);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.5); 
+            border: 2px solid var(--white); 
+        }
+        .price-box .btn-cta-accent:hover {
+            background-color: #5c0521;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+        }
+
+
+        /* --- SECCIÓN TESTIMONIOS (FONDO AZUL OSCURO) --- */
+        #testimonials {
+            background-color: var(--primary); 
+            color: var(--white);
+        }
+        #testimonials .section-title h2 {
+            color: var(--white); 
+        }
+        .testimonial-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+            color: var(--primary); 
+        }
+        .testimonial-card p {
+            font-style: italic;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--secondary-text);
+        }
+        .testimonial-card .author {
+            font-weight: bold;
+            color: var(--accent);
+            display: block;
+        }
+        .testimonial-card .rating {
+            color: orange;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        /* --- CTA FINAL --- */
+        #final-cta {
+            background: var(--complementary);
+            text-align: center;
+            padding: 60px 20px;
+        }
+        #final-cta h2 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: var(--primary);
+        }
+
+        /* --- FOOTER / CONTACTO --- */
+        footer { 
+            background: var(--primary); 
+            color: #aaa; 
+            padding: 40px 0; 
+            text-align: center; 
+            border-top: 5px solid var(--accent);
+        }
+        footer a { color: var(--complementary); margin: 0 10px; }
+
+        /* MOVIL */
+        @media (max-width: 768px) {
+            #hero-section { 
+                min-height: 80vh; 
+                padding-top: 100px;
+                padding-bottom: 50px;
+            }
+            .hero-content-box { 
+                max-width: 90%;
+                padding: 25px;
+                background: rgba(128, 6, 45, 0.9); 
+            }
+            .hero-content-box h1 { font-size: 2rem; }
+            .hero-content-box p { font-size: 1.1rem; }
+            
+            .section-padding { padding: 50px 0; }
+            .content-grid { flex-direction: column; }
+            
+            .logo-group {
+                gap: 5px; 
+            }
+            .logo-group .academy-name {
+                font-size: 0.9rem;
+            }
+
+            #course-details { 
+                flex-direction: column;
+                gap: 40px;
+            }
+            .price-box { 
+                order: -1; 
+                top: 0;
+                position: relative;
+            }
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr); 
+                gap: 15px;
+            }
+            .team-member {
+                padding: 10px;
+            }
+            .team-member img {
+                width: 80px;
+                height: 80px;
+            }
+            .team-member .name {
+                font-size: 1rem;
+            }
+            .team-member .title {
+                font-size: 0.85rem; 
+            }
+            .btn { /* Aplicar a todos los botones */
+                padding: 15px 30px;
+                font-size: 1rem;
+            }
+             .include-item {
+                /* Ajustamos la elevación en móvil */
+                box-shadow: 0 5px 10px rgba(0,0,0,0.15); 
+            }
+            .include-item:hover {
+                 box-shadow: 0 8px 15px rgba(0,0,0,0.25);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- BARRA DE NAVEGACIÓN -->
+    <header class="header">
+        <div class="container nav-container">
+            <div class="logo-group">
+                <span class="academy-name">Academia JGF</span>
+                <!-- Logo de la esquina superior izquierda -->
+                <div class="logo">
+                    <img src="logo.png" alt="Logo JGF Asociados" onerror="this.onerror=null;this.src='https://placehold.co/100x45/1F2D64/EDD7C7?text=JGF+Logo'">
+                </div>
+            </div>
+            <!-- Botón de la esquina, Vinotinto -->
+            <a href="https://wa.me/584124079536" target="_blank" class="btn btn-secondary" style="padding: 8px 20px; font-size: 1rem;">WhatsApp</a>
+        </div>
+    </header>
+
+
+    <!-- ************************************ -->
+    <!-- ⭐ SECCIÓN 1 — HERO (IMAGEN DE FONDO CON TEXTO CENTRADO) -->
+    <!-- ************************************ -->
+    <section id="hero-section">
+        <div class="hero-content-box">
+            <h1>Fórmate como contador independiente y lleva tu carrera al siguiente nivel.</h1>
+            <p>Aprende con cursos prácticos, plantillas, asesoría y acompañamiento real, de la mano de expertos que ya recorrieron el camino.</p>
+            
+            <!-- Botón principal: AZUL OSCURO con borde BLANCO -->
+            <a href="https://wa.me/584124079536" target="_blank" class="btn btn-cta-main">
+                👉 ¡INSCRIBITE YA!
+            </a>
+        </div>
+    </section>
+    
+    <!-- ************************************ -->
+    <!-- ⭐ QUIÉNES SOMOS (FONDO VINOTINTO, CUADROS BLANCOS) -->
+    <!-- ************************************ -->
+    <section id="about-us" class="section-padding">
+        <div class="container">
+            <div class="section-title">
+                <h2>Quiénes Somos en JGF Asociados</h2>
+            </div>
+
+            <div style="max-width: 700px; margin: 0 auto 50px auto; text-align: center;">
+                <p style="margin-bottom: 15px; font-size: 1.1rem;">
+                    Somos una firma contable que nació con la visión de empoderar a emprendedores y profesionales como tú, brindándoles las herramientas y el conocimiento necesario para dominar sus finanzas y alcanzar tus metas.
+                </p>
+                <p style="font-size: 1.1rem;">
+                    En la Academia JGF condensamos años de experiencia para ofrecerte cursos prácticos y actualizados, garantizando que adquieras habilidades reales y relevantes para el mercado laboral de la contabilidad independiente.
+                </p>
+            </div>
+
+            <h3 style="text-align: center; margin-bottom: 30px; font-size: 1.5rem;">Conoce a Nuestro Equipo</h3>
+            <div class="team-grid">
+                <!-- JUAN FERNÁNDEZ - Cuadro Blanco -->
+                <div class="team-member">
+                    <img src="juan.jpg" alt="Foto de Juan Fernández" onerror="this.onerror=null;this.src='https://placehold.co/100x100/1F2D64/80062D?text=JF'">
+                    <p class="name">Juan Fernández</p>
+                    <!-- Cargo en AZUL OSCURO (Contraste alto) -->
+                    <p class="title">Director - Licenciado en Contaduría Pública / Especialista en Gerencia Tributaria</p>
+                </div>
+                <!-- GABRIELA FERNÁNDEZ - Cuadro Blanco -->
+                <div class="team-member">
+                    <img src="gaby.jpg" alt="Foto de Gabriela Fernández" onerror="this.onerror=null;this.src='https://placehold.co/100x100/1F2D64/80062D?text=GF'">
+                    <p class="name">Gabriela Fernández</p>
+                    <!-- Cargo en AZUL OSCURO (Contraste alto) -->
+                    <p class="title">Directora - Licenciada en Contaduría Pública</p>
+                </div>
+                <!-- YENNIFER FERNÁNDEZ - Cuadro Blanco -->
+                <div class="team-member">
+                    <img src="yenni.jpg" alt="Foto de Yennifer Fernández" onerror="this.onerror=null;this.src='https://placehold.co/100x100/1F2D64/80062D?text=YF'">
+                    <p class="name">Yennifer Fernández</p>
+                    <!-- Cargo en AZUL OSCURO (Contraste alto) -->
+                    <p class="title">Directora - Estudiante de Contaduría Pública</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ************************************ -->
+    <!-- ⭐ SECCIÓN 2 — ¿QUÉ INCLUYE LA ACADEMIA? (FONDO BLANCO, CUADROS AZUL CLARO) -->
+    <!-- ************************************ -->
+    <section id="includes-section" class="section-padding">
+        <div class="container">
+            <div class="section-title">
+                <h2>Lo que obtendrás al unirte a la Academia JGF</h2>
+            </div>
+            
+            <div class="includes-grid">
+                <!-- Ítems con nuevo estilo elevado, fondo Azul Claro y borde Azul Oscuro -->
+                <div class="include-item"><span>📄</span> Plantillas profesionales</div>
+                <div class="include-item"><span>📘</span> Guías y ebooks descargables</div>
+                <div class="include-item"><span>🤝</span> Asesoría y soporte directo (Q&A)</div>
+                <div class="include-item"><span>📱</span> Revisión de perfil profesional en redes</div>
+                <div class="include-item"><span>💬</span> Grupo exclusivo para alumnos</div>
+                <div class="include-item"><span>🧾</span> Material actualizado con normativas vigentes</div>
+                <div class="include-item"><span>🎬</span> Clases grabadas disponibles 24/7</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ************************************ -->
+    <!-- ⭐ SECCIÓN 3, 4 y 5 — CURSO, MÓDULOS Y PRECIO (FONDO BEIGE) -->
+    <!-- ************************************ -->
+    <section class="section-padding" id="course-section">
+        <div class="container">
+            <div class="section-title" style="margin-bottom: 40px;">
+                <h2>Curso Disponible: Primeros pasos para convertirte en contador independiente</h2>
+                <p style="color: var(--secondary-text); max-width: 600px; margin: 15px auto 0;">
+                    Aprende lo fundamental para iniciar tu camino como contador independiente y atender clientes con seguridad y profesionalismo.
+                </p>
+            </div>
+            
+            <div id="course-details">
+                
+                <!-- Columna Izquierda: Módulos -->
+                <div class="course-info">
+                    <h3 style="color: var(--accent); font-size: 1.8rem; margin-bottom: 20px;">¿Qué Aprenderás? (Contenido del Curso)</h3>
+                    <ul class="module-list">
+                        <li>¿Cómo comenzar como contador independiente?</li>
+                        <li>Tipos de contribuyentes y sus responsabilidades.</li>
+                        <li>¿Cómo realizar una declaración de IVA? (Práctica guiada).</li>
+                        <li>Cómo manejar y fidelizar a mis clientes (Gestión de portafolio).</li>
+                    </ul>
+                    <p style="color: var(--primary); margin-top: 30px; font-weight: bold;">
+                        ✅ Este es un curso **pregrabado** para que aprendas a tu ritmo.
+                    </p>
+                </div>
+                
+                <!-- Columna Derecha: Precio y CTA -->
+                <div class="price-box">
+                    <h3>Inversión Total</h3>
+                    <span class="price-tag">
+                        $20 USD
+                    </span>
+                    <div class="payment-info">
+                        <p style="margin-bottom: 5px;">Puedes pagar vía:</p>
+                        <p><strong>Pago Móvil:</strong> BNC 04124079536 - CI 27232381</p>
+                        <p>A la **TASA BCV** del día.</p>
+                        <p style="margin-top: 10px;">Acceso inmediato y de por vida.</p>
+                    </div>
+                    
+                    <!-- Botón dentro de la caja de precio, en Vinotinto -->
+                    <a href="https://wa.me/584124079536" target="_blank" class="btn btn-cta-accent" style="margin-top: 20px;">
+                        ¡INSCRIBITE YA!
+                    </a>
+                    
+                    <p class="price-note">
+                        "No se procesa el pago desde la web directamente. Envía tu comprobante."
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- ************************************ -->
+    <!-- ⭐ SECCIÓN 6 — TESTIMONIOS (FONDO AZUL OSCURO) -->
+    <!-- ************************************ -->
+    <section id="testimonials" class="section-padding">
+        <div class="container">
+            <div class="section-title">
+                <h2>Lo que dicen nuestros Contadores formados</h2>
+            </div>
+            
+            <div class="testimonial-card">
+                <div class="rating">⭐⭐⭐⭐⭐</div>
+                <p>
+                    "El curso de JGF me dio la confianza y las herramientas exactas para empezar a tomar mis primeros clientes por mi cuenta. Las plantillas valen oro y la explicación del IVA fue super práctica. ¡Lo recomiendo a ojos cerrados!"
+                </p>
+                <span class="author">— Ana P., Contadora Independiente</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ************************************ -->
+    <!-- ⭐ CTA FINAL -->
+    <!-- ************************************ -->
+    <section id="final-cta" class="section-padding">
+        <div class="container">
+            <h2>¿Aún tienes dudas? ¡Escríbenos directamente!</h2>
+            <!-- Botón de CTA final, AZUL OSCURO -->
+            <a href="https://wa.me/584124079536" target="_blank" class="btn btn-cta-main">
+                Resolver mis dudas por WhatsApp
+            </a>
+        </div>
+    </section>
+
+    <!-- ************************************ -->
+    <!-- ⭐ FOOTER / CONTACTO -->
+    <!-- ************************************ -->
+    <footer>
+        <div class="container">
+            <p>JGF ASOCIADOS - Claridad Contable.</p>
+            <p style="margin-top: 15px;">
+                <a href="https://wa.me/584124079536" target="_blank">WhatsApp</a> | 
+                <a href="mailto:asociadosjgf09@gmail.com">Correo: asociadosjgf09@gmail.com</a> | 
+                <a href="https://instagram.com/jgfasociados" target="_blank">Instagram: @jgfasociados</a>
+            </p>
+            <p style="font-size: 0.8rem; margin-top: 10px;">&copy; 2025 JGFASOCIADOS. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
